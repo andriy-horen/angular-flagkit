@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AngularFlagkitComponent } from './angular-flagkit.component';
+import { FlagComponent } from './flag.component';
 
-describe('AngularFlagkitComponent', () => {
-  let component: AngularFlagkitComponent;
-  let fixture: ComponentFixture<AngularFlagkitComponent>;
+describe('FlagComponent', () => {
+  let component: FlagComponent;
+  let fixture: ComponentFixture<FlagComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AngularFlagkitComponent]
+      imports: [FlagComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(AngularFlagkitComponent);
+    fixture = TestBed.createComponent(FlagComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
