@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  inject,
+} from '@angular/core';
+import { injectFlags } from './providers/flags.provider';
 
 @Component({
   selector: 'ngx-flag',
@@ -8,8 +16,20 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   styleUrl: './flag.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FlagComponent {
+export class FlagComponent implements OnInit {
+  readonly flags = injectFlags();
+
+  private readonly elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+
+  ngOnInit(): void {
+    console.log(this.flags);
+    console.log(this.elementRef);
+  }
+
   @Input() set name(name: string) {
-    console.log(name);
+    const svg = this.flags[name];
+    if (svg) {
+      this.elementRef.nativeElement.innerHTML = svg;
+    }
   }
 }

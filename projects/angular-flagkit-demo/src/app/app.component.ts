@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { FlagComponent } from 'angular-flagkit';
+import { FlagComponent, provideFlags } from 'angular-flagkit';
+import { czFlag, plFlag, saFlag, usFlag } from 'angular-flagkit/flags';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, FlagComponent],
+  providers: [provideFlags({ plFlag, czFlag, usFlag, saFlag })],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
