@@ -1,5 +1,5 @@
 import { glob } from 'glob';
-import { camelCase, isString } from 'lodash';
+import { camelCase, isString, snakeCase } from 'lodash';
 import assert from 'node:assert/strict';
 import { existsSync } from 'node:fs';
 import fs from 'node:fs/promises';
@@ -47,8 +47,7 @@ async function readSourceSvg(globPath: string) {
   const filePaths = (await glob(globPath)).sort();
   const filePromises = filePaths.map((fpath) =>
     fs.readFile(fpath).then((data) => {
-      const fileName = path.basename(fpath, path.extname(fpath));
-      const name = `${camelCase(fileName)}Flag`;
+      const name = path.basename(fpath, path.extname(fpath));
 
       return {
         name,
@@ -108,11 +107,25 @@ function getArgs(): { src: string; out: string } {
 
   const svgFiles = await readSourceSvg(args.src);
   for (const { name, svg } of svgFiles) {
-    flagNames.add(name);
-    const optimizedSvg = optimize(svg);
+    const flagName = `${camelCase(name)}Flag`;
+    flagNames.add(flagName);
+
+    const optimizedSvg = optimize(svg, {
+      plugins: [
+        'preset-default',
+        {
+          name: 'prefixIds',
+          params: {
+            delim: '',
+            prefix: () => `flagkit_${snakeCase(name)}_`,
+          },
+        },
+      ],
+    });
+
     const flagDeclaration = printTsNode(
       createFlagVariableDeclaration({
-        name,
+        name: flagName,
         svg: optimizedSvg.data,
       })
     );
