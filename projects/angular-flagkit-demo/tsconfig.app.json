@@ -2,13 +2,13 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "paths": {
+      "angular-flagkit/*": ["../../dist/angular-flagkit/*"],
+      "angular-flagkit": ["../../dist/angular-flagkit"]
+    },
     "outDir": "../../out-tsc/app",
     "types": []
   },
-  "files": [
-    "src/main.ts"
-  ],
-  "include": [
-    "src/**/*.d.ts"
-  ]
+  "files": ["src/main.ts"],
+  "include": ["src/**/*.d.ts"]
 }

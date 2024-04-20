@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'ngx-flag',
@@ -8,4 +8,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrl: './flag.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FlagComponent {}
+export class FlagComponent {
+  @Input() set name(name: string) {
+    console.log(name);
+  }
+}
