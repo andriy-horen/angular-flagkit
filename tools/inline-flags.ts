@@ -74,7 +74,7 @@ function printTsNode(node: ts.Node) {
 }
 
 function getArgs(): { src: string; out: string } {
-  const { values: values } = parseArgs({
+  const { values: args } = parseArgs({
     args: process.argv.slice(2),
     options: {
       src: {
@@ -87,17 +87,17 @@ function getArgs(): { src: string; out: string } {
   });
 
   assert.strictEqual(
-    isString(values.src),
+    isString(args.src),
     true,
     `Expected 'src' argument to be svg sources path`
   );
   assert.strictEqual(
-    isString(values.out),
+    isString(args.out),
     true,
     `Expected 'out' argument to be output directory path`
   );
 
-  return { src: values.src!, out: values.out! };
+  return { src: args.src!, out: args.out! };
 }
 
 (async () => {
