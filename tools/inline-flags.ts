@@ -1,5 +1,5 @@
 import { glob } from 'glob';
-import { isString, snakeCase } from 'lodash';
+import { camelCase, isString } from 'lodash';
 import assert from 'node:assert/strict';
 import { existsSync } from 'node:fs';
 import fs from 'node:fs/promises';
@@ -44,11 +44,11 @@ function createFlagUnionTypeAlias(flagTypes: string[], unionTypeName: string) {
 }
 
 async function readSourceSvg(globPath: string) {
-  const filePaths = await glob(globPath);
+  const filePaths = (await glob(globPath)).sort();
   const filePromises = filePaths.map((fpath) =>
     fs.readFile(fpath).then((data) => {
       const fileName = path.basename(fpath, path.extname(fpath));
-      const name = snakeCase(fileName).toUpperCase();
+      const name = `${camelCase(fileName)}Flag`;
 
       return {
         name,
