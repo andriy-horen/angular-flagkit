@@ -6,6 +6,7 @@ import {
   OnInit,
   inject,
 } from '@angular/core';
+import { injectFlagsConfig } from './providers/flags-config.provider';
 import { injectFlags } from './providers/flags.provider';
 
 @Component({
@@ -18,6 +19,7 @@ import { injectFlags } from './providers/flags.provider';
 })
 export class FlagComponent implements OnInit {
   readonly flags = injectFlags();
+  readonly config = injectFlagsConfig();
 
   private readonly elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
 

@@ -6,6 +6,10 @@ import {
   inject,
 } from '@angular/core';
 
+export const FLAGS_TOKEN = new InjectionToken<Record<string, string>>(
+  'FLAGS_TOKEN'
+);
+
 export function provideFlags(flags: Record<string, string>): Provider[] {
   return [
     {
@@ -22,7 +26,3 @@ export function provideFlags(flags: Record<string, string>): Provider[] {
 export function injectFlags(): Record<string, string> {
   return inject(FLAGS_TOKEN, { optional: true }) ?? {};
 }
-
-export const FLAGS_TOKEN = new InjectionToken<Record<string, string>>(
-  'FLAGS_TOKEN'
-);
