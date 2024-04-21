@@ -99,6 +99,31 @@ function getArgs(): { src: string; out: string } {
   return { src: args.src!, out: args.out! };
 }
 
+function optimizeSvg({ svg, name }: FlagSvg) {
+  const optimizedSvg = optimize(svg, {
+    plugins: [
+      {
+        name: 'preset-default',
+        params: {
+          overrides: {
+            removeViewBox: false, // keep viewBox attribute in order to scale a svg
+          },
+        },
+      },
+      {
+        name: 'prefixIds',
+        params: {
+          delim: '',
+          prefix: () => `flagkit_${snakeCase(name)}_`, // add a namespace to ensure ids do not collide
+        },
+      },
+      'removeDimensions', // remove width & height attributes
+    ],
+  });
+
+  return optimizedSvg;
+}
+
 (async () => {
   const args = getArgs();
 
@@ -110,18 +135,7 @@ function getArgs(): { src: string; out: string } {
     const flagName = `${camelCase(name)}Flag`;
     flagNames.add(flagName);
 
-    const optimizedSvg = optimize(svg, {
-      plugins: [
-        'preset-default',
-        {
-          name: 'prefixIds',
-          params: {
-            delim: '',
-            prefix: () => `flagkit_${snakeCase(name)}_`,
-          },
-        },
-      ],
-    });
+    const optimizedSvg = optimizeSvg({ svg, name });
 
     const flagDeclaration = printTsNode(
       createFlagVariableDeclaration({
