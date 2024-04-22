@@ -2,19 +2,28 @@
   <div class="content">
     <div class="left-side">
       <h1>{{ title }}</h1>
-      <p>Congratulations! Your app is running. 🎉</p>
-      <ngx-flag
-        aria-hidden="false"
-        aria-label="Flag of Ukraine"
-        [name]="'uaFlag'"
-      ></ngx-flag>
-      <ngx-flag [name]="'plFlag'"></ngx-flag>
-      <ngx-flag [name]="'euFlag'"></ngx-flag>
-      <ngx-flag [name]="'usFlag'"></ngx-flag>
-      <ngx-flag [name]="'lgbtFlag'"></ngx-flag>
-      <ngx-flag [name]="'ggFlag'"></ngx-flag>
-      <ngx-flag [name]="'saFlag'"></ngx-flag>
-      <ngx-flag [name]="'czFlag'"></ngx-flag>
+
+      <div class="flag-group">
+        @for(country of allCountries; track country.numeric) {
+        <div class="flag-container">
+          <div class="name" title="{{ country.name }}">{{ country.name }}</div>
+          <div class="flag">
+            <ngx-flag
+              aria-hidden="false"
+              [ariaLabel]="country.name"
+              [name]="flagLookup[country.alpha2]"
+            ></ngx-flag>
+          </div>
+          <div class="iso-codes">
+            <code>
+              <div>{{ country.alpha2 }}</div>
+              <div>{{ country.alpha3 }}</div>
+              <div>{{ country.numeric }}</div>
+            </code>
+          </div>
+        </div>
+        }
+      </div>
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
     <div class="right-side">

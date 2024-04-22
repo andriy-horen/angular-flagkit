@@ -1,27 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, Inject, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {
+  FLAG_COUNTRY_ALPHA2_LOOKUP,
   FlagComponent,
   provideFlags,
-  provideFlagsGlobalConfig,
 } from 'angular-flagkit';
-import { czFlag, plFlag, saFlag, usFlag } from 'angular-flagkit/flags';
+import * as flags from 'angular-flagkit/flags';
+import { Iso3166Service } from './iso3166.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, FlagComponent],
-  providers: [
-    provideFlags({ plFlag, czFlag, usFlag, saFlag }),
-    provideFlagsGlobalConfig({ ariaHidden: false }),
-  ],
+  providers: [provideFlags({ ...flags })],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'Angular FlagKit Demo';
 
-  constructor() {}
+  readonly allCountries = inject(Iso3166Service).getData();
+
+  constructor(
+    @Inject(FLAG_COUNTRY_ALPHA2_LOOKUP)
+    readonly flagLookup: Record<string, string>
+  ) {}
 
   menuItems = [
     {

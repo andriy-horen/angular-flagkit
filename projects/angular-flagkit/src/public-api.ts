@@ -3,5 +3,6 @@
  */
 
 export * from './lib/flag.component';
+export * from './lib/providers/flag-country-lookup.provider';
 export * from './lib/providers/flags-config.provider';
 export * from './lib/providers/flags.provider';

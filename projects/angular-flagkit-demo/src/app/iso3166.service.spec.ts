@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CountryCodesService } from './country-codes.service';
+import { Iso3166Service } from './iso3166.service';
 
-describe('CountryCodesService', () => {
-  let service: CountryCodesService;
+describe('Iso3166Service', () => {
+  let service: Iso3166Service;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(CountryCodesService);
+    service = TestBed.inject(Iso3166Service);
   });
 
   it('should be created', () => {

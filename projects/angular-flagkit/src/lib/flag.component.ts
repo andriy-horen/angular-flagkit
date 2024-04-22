@@ -1,10 +1,10 @@
 import {
-  Attribute,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
   Input,
   OnInit,
+  inject,
 } from '@angular/core';
 import { injectFlagsConfig } from './providers/flags-config.provider';
 import { injectFlags } from './providers/flags.provider';
@@ -27,24 +27,7 @@ export class FlagComponent implements OnInit {
   readonly flags = injectFlags();
   readonly config = injectFlagsConfig();
 
-  constructor(
-    private readonly elementRef: ElementRef<HTMLElement>,
-    @Attribute('aria-hidden') ariaHidden: string,
-    @Attribute('aria-label') ariaLabel: string
-  ) {
-    if (!ariaHidden) {
-      this.elementRef.nativeElement.setAttribute(
-        'aria-hidden',
-        this.config.ariaHidden.toString()
-      );
-    }
-    if (!ariaLabel && !this.config.ariaHidden) {
-      this.elementRef.nativeElement.setAttribute(
-        'aria-label',
-        'Flag of Zimbabwe'
-      );
-    }
-  }
+  private readonly elementRef: ElementRef<HTMLElement> = inject(ElementRef);
 
   ngOnInit(): void {
     const svg = this.flags[this.name];
@@ -57,6 +40,6 @@ export class FlagComponent implements OnInit {
 
   // TODO: remove
   get shortName() {
-    return this.name.replace('Flag', '');
+    return this.name?.replace('Flag', '');
   }
 }
