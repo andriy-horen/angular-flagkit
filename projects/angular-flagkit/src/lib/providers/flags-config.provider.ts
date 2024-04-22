@@ -12,15 +12,23 @@ export interface FlagsGlobalConfig {
    * @default true
    */
   showFallbackFlag: boolean;
+
+  /**
+   * Indicates whether flags are hidden from an accessibility API.
+   * Should be set to true when flags have purely decorative meaning or duplicate text content
+   * @default false
+   */
+  ariaHidden: boolean;
 }
 
 const defaultConfig: FlagsGlobalConfig = {
   size: '15px',
   showFallbackFlag: true,
+  ariaHidden: false,
 };
 
-export const FLAGS_CONFIG_TOKEN = new InjectionToken<FlagsGlobalConfig>(
-  'FLAGS_CONFIG_TOKEN'
+export const FLAGS_GLOBAL_CONFIG_TOKEN = new InjectionToken<FlagsGlobalConfig>(
+  'FLAGS_GLOBAL_CONFIG_TOKEN'
 );
 
 export function provideFlagsGlobalConfig(
@@ -28,12 +36,12 @@ export function provideFlagsGlobalConfig(
 ): Provider[] {
   return [
     {
-      provide: FLAGS_CONFIG_TOKEN,
+      provide: FLAGS_GLOBAL_CONFIG_TOKEN,
       useValue: { ...defaultConfig, ...config },
     },
   ];
 }
 
 export function injectFlagsConfig(): FlagsGlobalConfig {
-  return inject(FLAGS_CONFIG_TOKEN, { optional: true }) ?? defaultConfig;
+  return inject(FLAGS_GLOBAL_CONFIG_TOKEN, { optional: true }) ?? defaultConfig;
 }

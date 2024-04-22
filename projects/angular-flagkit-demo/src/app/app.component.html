@@ -3,7 +3,11 @@
     <div class="left-side">
       <h1>{{ title }}</h1>
       <p>Congratulations! Your app is running. 🎉</p>
-      <ngx-flag [name]="'uaFlag'"></ngx-flag>
+      <ngx-flag
+        aria-hidden="false"
+        aria-label="Flag of Ukraine"
+        [name]="'uaFlag'"
+      ></ngx-flag>
       <ngx-flag [name]="'plFlag'"></ngx-flag>
       <ngx-flag [name]="'euFlag'"></ngx-flag>
       <ngx-flag [name]="'usFlag'"></ngx-flag>
