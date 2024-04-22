@@ -1,21 +1,20 @@
 <div class="preview">
-  <div class="preview-title" title="{{ flagPreview.title }}">
-    {{ flagPreview.title }}
+  <div class="preview-title">
+    <span>{{ flagPreview.title }}</span>
   </div>
   <div class="flag-container">
     <ngx-flag
       aria-hidden="false"
       [ariaLabel]="flagPreview.title"
       [name]="flagPreview.flagName"
+      [title]="flagPreview.flagName"
     ></ngx-flag>
   </div>
-  @if (flagPreview.tags.length > 0) {
-  <div class="preview-tags">
-    @for(tag of flagPreview.tags; track tag) {
-    <div>
-      <code>{{ tag }}</code>
-    </div>
+  <div class="flag-name">
+    @if (flagPreview.flagName) {
+    <code>{{ flagPreview.flagName }}</code>
+    } @else {
+    <span class="no-flag">not supported (fallback flag)</span>
     }
   </div>
-  }
 </div>

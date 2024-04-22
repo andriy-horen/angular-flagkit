@@ -8,7 +8,7 @@
   flex-direction: column;
   justify-content: end;
 
-  width: 10rem;
+  width: 11rem;
   border: 1px solid var(--flag-border);
 
   padding: 0 0.5rem;
@@ -32,10 +32,18 @@
   padding: 1rem;
 }
 
-.preview-tags {
+.flag-name {
   display: flex;
   font-size: 0.75rem;
+  font-weight: bold;
   justify-content: space-evenly;
   border-top: 1px solid var(--flag-border);
   padding: 0.5rem 0;
+  height: 2rem;
+}
+
+.no-flag {
+  font-style: italic;
+  font-size: 0.75rem;
+  font-weight: normal;
 }

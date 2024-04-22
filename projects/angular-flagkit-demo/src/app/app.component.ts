@@ -33,19 +33,17 @@ export class AppComponent {
     private readonly flagLookup: Record<string, string>
   ) {}
 
-  isoPreviewAdapter(country: Iso3166Country): FlagPreview {
+  isoFlagPreviewAdapter(country: Iso3166Country): FlagPreview {
     return {
-      title: country.name,
+      title: `${country.name}`,
       flagName: this.flagLookup[country.alpha2] as flags.FlagName,
-      tags: [country.alpha2, country.alpha3, country.numeric.toString()],
     };
   }
 
-  specialPreviewAdapter(flag: SpecialFlag): FlagPreview {
+  specialFlagPreviewAdapter(flag: SpecialFlag): FlagPreview {
     return {
       title: flag.displayName,
       flagName: flag.name,
-      tags: [],
     };
   }
 

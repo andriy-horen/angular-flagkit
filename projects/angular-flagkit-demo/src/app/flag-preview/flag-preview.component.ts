@@ -5,7 +5,6 @@ import { FlagName } from 'angular-flagkit/flags';
 export interface FlagPreview {
   title: string;
   flagName: FlagName;
-  tags: string[];
 }
 
 @Component({

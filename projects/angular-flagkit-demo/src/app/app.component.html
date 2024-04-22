@@ -8,7 +8,7 @@
       <div class="preview-group">
         @for(country of allCountries; track country.alpha2) {
         <app-flag-preview
-          [flagPreview]="isoPreviewAdapter(country)"
+          [flagPreview]="isoFlagPreviewAdapter(country)"
         ></app-flag-preview>
         }
       </div>
@@ -18,7 +18,7 @@
       <div class="preview-group">
         @for(flag of specialFlags; track flag.name) {
         <app-flag-preview
-          [flagPreview]="specialPreviewAdapter(flag)"
+          [flagPreview]="specialFlagPreviewAdapter(flag)"
         ></app-flag-preview>
         }
       </div>
