@@ -3,25 +3,23 @@
     <div class="left-side">
       <h1>{{ title }}</h1>
 
-      <div class="flag-group">
-        @for(country of allCountries; track country.numeric) {
-        <div class="flag-container">
-          <div class="name" title="{{ country.name }}">{{ country.name }}</div>
-          <div class="flag">
-            <ngx-flag
-              aria-hidden="false"
-              [ariaLabel]="country.name"
-              [name]="flagLookup[country.alpha2]"
-            ></ngx-flag>
-          </div>
-          <div class="iso-codes">
-            <code>
-              <div>{{ country.alpha2 }}</div>
-              <div>{{ country.alpha3 }}</div>
-              <div>{{ country.numeric }}</div>
-            </code>
-          </div>
-        </div>
+      <h2>Country flags (ISO 3166-1)</h2>
+
+      <div class="preview-group">
+        @for(country of allCountries; track country.alpha2) {
+        <app-flag-preview
+          [flagPreview]="isoPreviewAdapter(country)"
+        ></app-flag-preview>
+        }
+      </div>
+
+      <h2>Special flags</h2>
+
+      <div class="preview-group">
+        @for(flag of specialFlags; track flag.name) {
+        <app-flag-preview
+          [flagPreview]="specialPreviewAdapter(flag)"
+        ></app-flag-preview>
         }
       </div>
     </div>

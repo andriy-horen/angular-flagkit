@@ -1,8 +1,8 @@
 import { InjectionToken } from '@angular/core';
-import { FlagType } from 'angular-flagkit/flags';
+import { FlagName } from 'angular-flagkit/flags';
 
 export const FLAG_COUNTRY_ALPHA2_LOOKUP = new InjectionToken<
-  Record<string, FlagType>
+  Record<string, FlagName>
 >('FLAG_COUNTRY_ALPHA2_LOOKUP', {
   providedIn: 'root',
   factory: () =>
@@ -260,7 +260,7 @@ export const FLAG_COUNTRY_ALPHA2_LOOKUP = new InjectionToken<
 });
 
 export const FLAG_COUNTRY_ALPHA3_LOOKUP = new InjectionToken<
-  Record<string, FlagType>
+  Record<string, FlagName>
 >('FLAG_COUNTRY_ALPHA3_LOOKUP', {
   providedIn: 'root',
   factory: () =>
@@ -518,7 +518,7 @@ export const FLAG_COUNTRY_ALPHA3_LOOKUP = new InjectionToken<
 });
 
 export const FLAG_COUNTRY_NUMERIC_LOOKUP = new InjectionToken<
-  Record<number, FlagType>
+  Record<number, FlagName>
 >('FLAG_COUNTRY_NUMERIC_LOOKUP', {
   providedIn: 'root',
   factory: () =>

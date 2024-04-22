@@ -1,2 +1,2 @@
-export * from './src/flagType';
+export * from './src/flagName';
 export * from './src/flags';

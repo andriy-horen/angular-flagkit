@@ -1,4 +1,4 @@
-export type FlagType =
+export type FlagName =
   | 'adFlag'
   | 'aeFlag'
   | 'afFlag'

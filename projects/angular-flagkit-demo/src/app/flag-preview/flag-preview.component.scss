@@ -1,0 +1,41 @@
+:host {
+  display: flex;
+  --flag-border: #e9e9e9;
+}
+
+.preview {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+
+  width: 10rem;
+  border: 1px solid var(--flag-border);
+
+  padding: 0 0.5rem;
+}
+
+.preview-title {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 0.875rem;
+  padding: 0.5rem 0;
+}
+
+.flag-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid var(--flag-border);
+  padding: 1rem;
+}
+
+.preview-tags {
+  display: flex;
+  font-size: 0.75rem;
+  justify-content: space-evenly;
+  border-top: 1px solid var(--flag-border);
+  padding: 0.5rem 0;
+}

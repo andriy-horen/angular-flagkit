@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { FlagName } from 'angular-flagkit/flags';
 
 export interface Iso3166Country {
   name: string;
@@ -8,11 +9,16 @@ export interface Iso3166Country {
   numeric: number;
 }
 
+export interface SpecialFlag {
+  displayName: string;
+  name: FlagName;
+}
+
 @Injectable({
   providedIn: 'root',
 })
-export class Iso3166Service {
-  private readonly data: Iso3166Country[] = [
+export class FlagsDataService {
+  private readonly iso3166Data: Iso3166Country[] = [
     {
       name: 'Afghanistan',
       isoName: 'Afghanistan',
@@ -1758,7 +1764,23 @@ export class Iso3166Service {
     },
   ];
 
-  getData() {
-    return this.data.map((record) => ({ ...record }));
+  private readonly specialFlags: SpecialFlag[] = [
+    { displayName: 'European Union', name: 'euFlag' },
+    { displayName: 'England', name: 'gbEngFlag' },
+    { displayName: 'Northern Ireland', name: 'gbNirFlag' },
+    { displayName: 'Scotland', name: 'gbSctFlag' },
+    { displayName: 'Wales', name: 'gbWlsFlag' },
+    { displayName: 'Shetland', name: 'gbZetFlag' },
+    { displayName: 'LGBT', name: 'lgbtFlag' },
+    { displayName: 'California', name: 'usCaFlag' },
+    { displayName: 'Kosovo', name: 'xkFlag' },
+  ];
+
+  getIso3166Data() {
+    return this.iso3166Data.map((record) => ({ ...record }));
+  }
+
+  getSpecialFlags() {
+    return [...this.specialFlags];
   }
 }

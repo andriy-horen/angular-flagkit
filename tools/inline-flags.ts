@@ -8,7 +8,7 @@ import { parseArgs } from 'node:util';
 import { optimize } from 'svgo';
 import ts from 'typescript';
 
-const FLAG_UNION_NAME = 'FlagType';
+const FLAG_UNION_NAME = 'FlagName';
 type FlagSvg = { name: string; svg: string };
 
 function createFlagVariableDeclaration({ name, svg }: FlagSvg): ts.Node {
@@ -155,7 +155,7 @@ function optimizeSvg({ svg, name }: FlagSvg) {
   }
 
   await fs.writeFile(path.join(args.out, 'flags.ts'), flags.join('\n'));
-  await fs.writeFile(path.join(args.out, 'flagType.ts'), flagUnionType);
+  await fs.writeFile(path.join(args.out, 'flagName.ts'), flagUnionType);
 
   console.log(`✅ Generated ts files with inlined svg in "${args.out}"`);
 })();

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { Iso3166Service } from './iso3166.service';
+import { FlagsDataService } from './flags-data.service';
 
-describe('Iso3166Service', () => {
-  let service: Iso3166Service;
+describe('FlagsDataService', () => {
+  let service: FlagsDataService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(Iso3166Service);
+    service = TestBed.inject(FlagsDataService);
   });
 
   it('should be created', () => {

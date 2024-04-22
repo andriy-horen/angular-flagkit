@@ -1,0 +1,21 @@
+<div class="preview">
+  <div class="preview-title" title="{{ flagPreview.title }}">
+    {{ flagPreview.title }}
+  </div>
+  <div class="flag-container">
+    <ngx-flag
+      aria-hidden="false"
+      [ariaLabel]="flagPreview.title"
+      [name]="flagPreview.flagName"
+    ></ngx-flag>
+  </div>
+  @if (flagPreview.tags.length > 0) {
+  <div class="preview-tags">
+    @for(tag of flagPreview.tags; track tag) {
+    <div>
+      <code>{{ tag }}</code>
+    </div>
+    }
+  </div>
+  }
+</div>
