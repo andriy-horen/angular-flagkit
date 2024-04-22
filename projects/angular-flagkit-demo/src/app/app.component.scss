@@ -59,7 +59,7 @@ main {
   display: flex;
   justify-content: space-around;
   width: 100%;
-  max-width: 700px;
+  max-width: 1300px;
   margin-bottom: 3rem;
 }
 
@@ -96,7 +96,6 @@ main {
   border-radius: 2.75rem;
   border: 0;
   transition: background 0.3s ease;
-  font-family: var(--inter-font);
   font-size: 0.875rem;
   font-style: normal;
   font-weight: 500;
