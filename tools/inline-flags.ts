@@ -8,7 +8,14 @@ import { parseArgs } from 'node:util';
 import { optimize } from 'svgo';
 import ts from 'typescript';
 
-const FLAG_UNION_NAME = 'FlagName';
+const config = {
+  flagUnionType: 'FlagName',
+  widthCssProperty: '--ngx-flag-width',
+  heightCssProperty: '--ngx-flag-height',
+  widthDefaultValue: '21px',
+  heightDefaultValue: '15px',
+};
+
 type FlagSvg = { name: string; svg: string };
 
 function createFlagVariableDeclaration({ name, svg }: FlagSvg): ts.Node {
@@ -117,7 +124,19 @@ function optimizeSvg({ svg, name }: FlagSvg) {
           prefix: () => `flagkit_${snakeCase(name)}_`, // add a namespace to ensure ids do not collide
         },
       },
-      'removeDimensions', // remove width & height attributes
+      'removeDimensions', // remove width & height attributes,
+      {
+        name: 'setCssProperties',
+        fn: () => ({
+          element: {
+            enter: (node) => {
+              if (node.name === 'svg') {
+                node.attributes.style = `width:var(${config.widthCssProperty},${config.widthDefaultValue});height:var(${config.heightCssProperty},${config.heightDefaultValue});`;
+              }
+            },
+          },
+        }),
+      },
     ],
   });
 
@@ -147,7 +166,7 @@ function optimizeSvg({ svg, name }: FlagSvg) {
   }
 
   const flagUnionType = printTsNode(
-    createFlagUnionTypeAlias([...flagNames], FLAG_UNION_NAME)
+    createFlagUnionTypeAlias([...flagNames], config.flagUnionType)
   );
 
   if (!existsSync(args.out)) {

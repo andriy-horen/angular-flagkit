@@ -3,11 +3,13 @@ import {
   Component,
   ElementRef,
   Input,
-  OnInit,
   inject,
 } from '@angular/core';
+import { FlagName } from 'angular-flagkit/flags';
 import { injectFlagsConfig } from './providers/flags-config.provider';
 import { injectFlags } from './providers/flags.provider';
+
+export type FlagType = FlagName | (string & {});
 
 @Component({
   selector: 'ngx-flag',
@@ -23,20 +25,27 @@ import { injectFlags } from './providers/flags.provider';
     '[class]': '"ngx-flag-" + shortName',
   },
 })
-export class FlagComponent implements OnInit {
+export class FlagComponent {
   readonly flags = injectFlags();
   readonly config = injectFlagsConfig();
 
   private readonly elementRef: ElementRef<HTMLElement> = inject(ElementRef);
 
-  ngOnInit(): void {
-    const svg = this.flags[this.name];
+  @Input()
+  get name() {
+    return this._name;
+  }
+  set name(value: FlagType) {
+    this._name = value;
+    const svg = this.flags[this._name];
     if (svg) {
       this.elementRef.nativeElement.innerHTML = svg;
+    } else if (this.config.showFallbackFlag) {
+      this.elementRef.nativeElement.innerHTML =
+        this.flags['fallbackFlag'] ?? '';
     }
   }
-
-  @Input() name = '';
+  private _name!: FlagType;
 
   // TODO: remove
   get shortName() {

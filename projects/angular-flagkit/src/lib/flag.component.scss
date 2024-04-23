@@ -1,5 +1,14 @@
-::ng-deep svg {
-  width: 21px;
-  height: 15px;
-  box-shadow: 0px 1px 3px 0px #a7a7a7;
+// ::ng-deep svg {
+//   width: 21px;
+//   height: 15px;
+//   box-shadow: 0px 1px 3px 0px #a7a7a7;
+// }
+
+:host {
+  --ngx-flag-height: 15px;
+  --ngx-flag-width: 21px;
+  display: inline-block;
+  overflow: hidden;
+  height: var(--ngx-flag-height);
+  line-height: var(--ngx-flag-width);
 }

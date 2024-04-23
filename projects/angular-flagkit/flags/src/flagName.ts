@@ -66,6 +66,7 @@ export type FlagName =
   | 'esFlag'
   | 'etFlag'
   | 'euFlag'
+  | 'fallbackFlag'
   | 'fiFlag'
   | 'fjFlag'
   | 'fkFlag'

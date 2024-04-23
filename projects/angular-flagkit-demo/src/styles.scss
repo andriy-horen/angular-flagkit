@@ -1,2 +1,9 @@
 @import "styles/normalize";
 @import "styles/typography";
+
+// TODO: remove below style
+svg {
+  display: block;
+  width: 60px;
+  height: 60px;
+}
