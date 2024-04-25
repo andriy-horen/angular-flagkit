@@ -1,0 +1,26 @@
+<h2>Country flags (ISO 3166-1)</h2>
+
+<ng-container *ngIf="interval$ | async as foo">
+  <ngx-flag [name]="foo"></ngx-flag>
+  {{ foo }}
+</ng-container>
+
+<ngx-flag [name]="'bgFlag'" class="foo"></ngx-flag>
+
+<div class="preview-group">
+  @for(country of allCountries; track country.alpha2) {
+  <app-flag-preview
+    [flagPreview]="isoFlagPreviewAdapter(country)"
+  ></app-flag-preview>
+  }
+</div>
+
+<h2>Special flags</h2>
+
+<div class="preview-group">
+  @for(flag of specialFlags; track flag.name) {
+  <app-flag-preview
+    [flagPreview]="specialFlagPreviewAdapter(flag)"
+  ></app-flag-preview>
+  }
+</div>

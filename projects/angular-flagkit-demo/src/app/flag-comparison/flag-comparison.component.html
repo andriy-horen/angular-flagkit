@@ -1,0 +1,12 @@
+@for (country of countries; track country.alpha2) {
+  <div class="compare">
+    <div class="angular-flagkit">
+      <ngx-flag [name]="flagLookup[country.alpha2]"></ngx-flag>
+    </div>
+    <div class="svg-country-flag">
+      <app-svg-img
+        [src]="buildSvgCountryFlagsUrl(country.alpha2)"
+      ></app-svg-img>
+    </div>
+  </div>
+}

@@ -2,49 +2,34 @@
   <div class="content">
     <div class="left-side">
       <h1>{{ title }}</h1>
-
-      <h2>Country flags (ISO 3166-1)</h2>
-
-      <div class="preview-group">
-        @for(country of allCountries; track country.alpha2) {
-        <app-flag-preview
-          [flagPreview]="isoFlagPreviewAdapter(country)"
-        ></app-flag-preview>
-        }
-      </div>
-
-      <h2>Special flags</h2>
-
-      <div class="preview-group">
-        @for(flag of specialFlags; track flag.name) {
-        <app-flag-preview
-          [flagPreview]="specialFlagPreviewAdapter(flag)"
-        ></app-flag-preview>
-        }
-      </div>
+      <router-outlet />
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
     <div class="right-side">
       <div class="pill-group">
         @for (item of menuItems; track item.title) {
-        <a class="pill" [href]="item.link" target="_blank" rel="noopener">
-          <span>{{ item.title }}</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            height="14"
-            viewBox="0 -960 960 960"
-            width="14"
-            fill="currentColor"
-          >
-            <path
-              d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"
-            />
-          </svg>
-        </a>
+          @if (isExternalLink(item.link)) {
+            <a class="pill" [href]="item.link" target="_blank" rel="noopener">
+              <span>{{ item.title }}</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="14"
+                viewBox="0 -960 960 960"
+                width="14"
+                fill="currentColor"
+              >
+                <path
+                  d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"
+                />
+              </svg>
+            </a>
+          } @else {
+            <a class="pill" [routerLink]="item.link">
+              <span>{{ item.title }}</span>
+            </a>
+          }
         }
       </div>
     </div>
   </div>
 </main>
-
-<router-outlet />
