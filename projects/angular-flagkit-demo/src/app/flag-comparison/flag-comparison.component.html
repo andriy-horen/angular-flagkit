@@ -3,10 +3,37 @@
     <div class="angular-flagkit">
       <ngx-flag [name]="flagLookup[country.alpha2]"></ngx-flag>
     </div>
-    <div class="svg-country-flag">
-      <app-svg-img
-        [src]="buildSvgCountryFlagsUrl(country.alpha2)"
-      ></app-svg-img>
+    <div class="img-container">
+      <img
+        appFlagSrc
+        [countryCode]="country.alpha2"
+        [packageName]="'flagpack-core'"
+        [alt]="country.name"
+      />
+    </div>
+    <div class="img-container">
+      <img
+        appFlagSrc
+        [countryCode]="country.alpha2"
+        [packageName]="'country-flag-icons'"
+        [alt]="country.name"
+      />
+    </div>
+    <div class="img-container">
+      <img
+        appFlagSrc
+        [countryCode]="country.alpha2"
+        [packageName]="'svg-country-flags'"
+        [alt]="country.name"
+      />
+    </div>
+    <div class="img-container">
+      <img
+        appFlagSrc
+        [countryCode]="country.alpha2"
+        [packageName]="'flag-icons'"
+        [alt]="country.name"
+      />
     </div>
   </div>
 }

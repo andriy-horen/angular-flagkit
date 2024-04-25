@@ -71,6 +71,16 @@
                 "glob": "*.svg",
                 "input": "./node_modules/flag-icons/flags/4x3",
                 "output": "assets/flag-icons"
+              },
+              {
+                "glob": "*.svg",
+                "input": "./node_modules/flagpack-core/svg/m",
+                "output": "assets/flagpack-core"
+              },
+              {
+                "glob": "*.svg",
+                "input": "./node_modules/country-flag-icons/3x2",
+                "output": "assets/country-flag-icons"
               }
             ],
             "styles": ["projects/angular-flagkit-demo/src/styles.scss"],
