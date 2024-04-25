@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SvgImgComponent } from './svg-img.component';
+import { ImageWithSizeComponent } from './image-with-size.component';
 
-describe('SvgImgComponent', () => {
-  let component: SvgImgComponent;
-  let fixture: ComponentFixture<SvgImgComponent>;
+describe('ImageWithSizeComponent', () => {
+  let component: ImageWithSizeComponent;
+  let fixture: ComponentFixture<ImageWithSizeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SvgImgComponent]
+      imports: [ImageWithSizeComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(SvgImgComponent);
+    fixture = TestBed.createComponent(ImageWithSizeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

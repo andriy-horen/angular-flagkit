@@ -1,39 +1,50 @@
-@for (country of countries; track country.alpha2) {
-  <div class="compare">
+<div class="flag-comparison">
+  @for (country of countries; track country.alpha2) {
+    <div class="country-name">
+      <span>{{ country.name }}</span>
+    </div>
+    <div class="iso-code">
+      <code>{{ country.alpha2 }}</code>
+    </div>
+
     <div class="angular-flagkit">
       <ngx-flag [name]="flagLookup[country.alpha2]"></ngx-flag>
     </div>
     <div class="img-container">
-      <img
-        appFlagSrc
-        [countryCode]="country.alpha2"
-        [packageName]="'flagpack-core'"
-        [alt]="country.name"
-      />
+      <app-image-with-size>
+        <img
+          appImageSize
+          [src]="urlBuilder['flagpack-core'](country.alpha2)"
+          [alt]="country.name"
+        />
+      </app-image-with-size>
     </div>
     <div class="img-container">
-      <img
-        appFlagSrc
-        [countryCode]="country.alpha2"
-        [packageName]="'country-flag-icons'"
-        [alt]="country.name"
-      />
+      <app-image-with-size>
+        <img
+          appImageSize
+          [src]="urlBuilder['country-flag-icons'](country.alpha2)"
+          [alt]="country.name"
+        />
+      </app-image-with-size>
     </div>
     <div class="img-container">
-      <img
-        appFlagSrc
-        [countryCode]="country.alpha2"
-        [packageName]="'svg-country-flags'"
-        [alt]="country.name"
-      />
+      <app-image-with-size>
+        <img
+          appImageSize
+          [src]="urlBuilder['svg-country-flags'](country.alpha2)"
+          [alt]="country.name"
+        />
+      </app-image-with-size>
     </div>
     <div class="img-container">
-      <img
-        appFlagSrc
-        [countryCode]="country.alpha2"
-        [packageName]="'flag-icons'"
-        [alt]="country.name"
-      />
+      <app-image-with-size>
+        <img
+          appImageSize
+          [src]="urlBuilder['flag-icons'](country.alpha2)"
+          [alt]="country.name"
+        />
+      </app-image-with-size>
     </div>
-  </div>
-}
+  }
+</div>
