@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "inline-flags": "ts-node ./tools/inline-flags.ts --src './assets/svg/*.svg' --out $(ng config projects['angular-flagkit'].root)/flags/src"
+    "inline-flags": "ts-node ./tools/inline-flags.ts --src './assets/svg/*.svg' --out $(ng config projects['angular-flagkit'].root)/flags/src",
+    "copy-assets": "ts-node ./tools/copy-assets.ts"
   },
   "private": true,
   "dependencies": {
