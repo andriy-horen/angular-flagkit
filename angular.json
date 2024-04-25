@@ -61,7 +61,17 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "projects/angular-flagkit-demo/src/favicon.ico",
-              "projects/angular-flagkit-demo/src/assets"
+              "projects/angular-flagkit-demo/src/assets",
+              {
+                "glob": "*.svg",
+                "input": "./node_modules/svg-country-flags/svg",
+                "output": "assets/svg-country-flags"
+              },
+              {
+                "glob": "*.svg",
+                "input": "./node_modules/flag-icons/flags/4x3",
+                "output": "assets/flag-icons"
+              }
             ],
             "styles": ["projects/angular-flagkit-demo/src/styles.scss"],
             "scripts": []
