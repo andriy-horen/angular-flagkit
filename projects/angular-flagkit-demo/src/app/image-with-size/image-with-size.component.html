@@ -1,2 +1,4 @@
 <ng-content></ng-content>
-<div class="image-size">{{ size$ | async | bytes }}</div>
+<ng-container *ngIf="size$ | async as size">
+  <div class="image-size">{{ size | bytes }}</div>
+</ng-container>

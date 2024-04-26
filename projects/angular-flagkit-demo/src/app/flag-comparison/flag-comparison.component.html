@@ -9,15 +9,7 @@
 
     <div class="angular-flagkit">
       <ngx-flag [name]="flagLookup[country.alpha2]"></ngx-flag>
-    </div>
-    <div class="img-container">
-      <app-image-with-size>
-        <img
-          appImageSize
-          [src]="urlBuilder['flagpack-core'](country.alpha2)"
-          [alt]="country.name"
-        />
-      </app-image-with-size>
+      <div>{{ getFlagSize(flagLookup[country.alpha2]) | bytes }}</div>
     </div>
     <div class="img-container">
       <app-image-with-size>
@@ -25,6 +17,17 @@
           appImageSize
           [src]="urlBuilder['country-flag-icons'](country.alpha2)"
           [alt]="country.name"
+          fallbackUrl="assets/fallback-flag.svg"
+        />
+      </app-image-with-size>
+    </div>
+    <div class="img-container">
+      <app-image-with-size>
+        <img
+          appImageSize
+          [src]="urlBuilder['flagpack-core'](country.alpha2)"
+          [alt]="country.name"
+          fallbackUrl="assets/fallback-flag.svg"
         />
       </app-image-with-size>
     </div>
@@ -34,6 +37,7 @@
           appImageSize
           [src]="urlBuilder['svg-country-flags'](country.alpha2)"
           [alt]="country.name"
+          fallbackUrl="assets/fallback-flag.svg"
         />
       </app-image-with-size>
     </div>
@@ -43,6 +47,7 @@
           appImageSize
           [src]="urlBuilder['flag-icons'](country.alpha2)"
           [alt]="country.name"
+          fallbackUrl="assets/fallback-flag.svg"
         />
       </app-image-with-size>
     </div>

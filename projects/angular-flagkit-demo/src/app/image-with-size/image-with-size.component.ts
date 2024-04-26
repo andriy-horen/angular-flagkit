@@ -1,11 +1,9 @@
 import { CommonModule } from '@angular/common';
 import {
-  AfterViewInit,
+  AfterContentInit,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ContentChild,
-  inject,
 } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BytesSizePipe } from '../bytes-size.pipe';
@@ -19,15 +17,16 @@ import { ImageSizeDirective } from '../image-size.directive';
   styleUrl: './image-with-size.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ImageWithSizeComponent implements AfterViewInit {
-  private readonly _cdr = inject(ChangeDetectorRef);
-
+export class ImageWithSizeComponent implements AfterContentInit {
   size$?: Observable<number>;
 
   @ContentChild(ImageSizeDirective) readonly imageSize?: ImageSizeDirective;
 
-  ngAfterViewInit(): void {
-    this.size$ = this.imageSize?.sizeBytes$;
-    this._cdr.markForCheck();
+  ngAfterContentInit(): void {
+    if (!this.imageSize) {
+      console.error('ImageWithSizeComponent expected ImageSizeDirective child');
+      return;
+    }
+    this.size$ = this.imageSize.sizeBytes$;
   }
 }
