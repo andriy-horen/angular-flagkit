@@ -5,7 +5,7 @@ import {
   Component,
   ContentChild,
 } from '@angular/core';
-import { Observable } from 'rxjs';
+import { of } from 'rxjs';
 import { BytesSizePipe } from '../bytes-size.pipe';
 import { ImageSizeDirective } from '../image-size.directive';
 
@@ -18,7 +18,7 @@ import { ImageSizeDirective } from '../image-size.directive';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ImageWithSizeComponent implements AfterContentInit {
-  size$?: Observable<number>;
+  size$ = of(0);
 
   @ContentChild(ImageSizeDirective) readonly imageSize?: ImageSizeDirective;
 
