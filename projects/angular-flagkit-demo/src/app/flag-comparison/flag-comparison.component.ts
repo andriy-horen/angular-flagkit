@@ -28,7 +28,7 @@ import { IMAGE_BUILDERS_TOKEN } from './image-url-builder.service';
 export class FlagComparisonComponent {
   private readonly _textEncoder = new TextEncoder();
 
-  readonly countries = inject(FlagsDataService).getIso3166Data();
+  readonly countries = inject(FlagsDataService).getIso3166Data().slice(0, 20);
   readonly flagLookup = inject<Record<string, string>>(
     FLAG_COUNTRY_ALPHA2_LOOKUP,
   );
