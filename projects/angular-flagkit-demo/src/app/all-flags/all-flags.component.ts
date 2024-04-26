@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import {
   FLAG_COUNTRY_ALPHA2_LOOKUP,
   FlagComponent,
@@ -25,6 +25,7 @@ import {
   providers: [provideFlags({ ...flags })],
   templateUrl: './all-flags.component.html',
   styleUrl: './all-flags.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AllFlagsComponent {
   private readonly flagsData = inject(FlagsDataService);
