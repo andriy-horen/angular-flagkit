@@ -15,8 +15,13 @@ import {
   switchMap,
 } from 'rxjs';
 
+export type ImageResult = {
+  blob: Blob;
+  url: string;
+};
+
 @Directive({
-  selector: '[appImageSize]',
+  selector: 'img[appImageSize]',
   exportAs: 'imageSize',
   standalone: true,
 })
@@ -33,6 +38,31 @@ export class ImageSizeDirective implements OnDestroy {
     URL.revokeObjectURL(this._blobUrl ?? '');
   }
 
+  private handleNext = ({ blob, url }: ImageResult) => {
+    this.revokeUrl();
+    this._blobUrl = url;
+    const size = blob.size;
+    this._sizeSubject.next(size);
+
+    this._renderer.setAttribute(this._elementRef.nativeElement, 'src', url);
+    this._renderer.setAttribute(
+      this._elementRef.nativeElement,
+      'data-size',
+      size.toString(),
+    );
+  };
+
+  private handleError = (error: any) => {
+    if (error.status !== 404 || !this.fallbackUrl) {
+      return;
+    }
+    this._renderer.setAttribute(
+      this._elementRef.nativeElement,
+      'src',
+      this.fallbackUrl,
+    );
+  };
+
   readonly sub = this._srcSubject
     .pipe(
       filter((src) => src?.length > 0),
@@ -45,23 +75,16 @@ export class ImageSizeDirective implements OnDestroy {
         return { blob, url };
       }),
     )
-    .subscribe(({ blob, url }) => {
-      this.revokeUrl();
-      this._blobUrl = url;
-      const size = blob.size;
-      this._sizeSubject.next(size);
-
-      this._renderer.setAttribute(this._elementRef.nativeElement, 'src', url);
-      this._renderer.setAttribute(
-        this._elementRef.nativeElement,
-        'data-size',
-        size.toString(),
-      );
+    .subscribe({
+      next: this.handleNext,
+      error: this.handleError,
     });
 
   @Input() set src(src: string) {
     this._srcSubject.next(src);
   }
+
+  @Input() fallbackUrl?: string;
 
   get sizeBytes$() {
     return this._sizeSubject.asObservable();
